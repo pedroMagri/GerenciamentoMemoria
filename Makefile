@@ -10,17 +10,17 @@ all: $(EXEC)
 $(EXEC): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(EXEC)
 
-main.o: main.c processo.h memoria.h
-	$(CC) $(CFLAGS) -c main.c
+main.o: src/main.c includes/processo.h includes/memoria.h
+	$(CC) $(CFLAGS) -c src/main.c
 
-processo.o: processo.c processo.h pagina.h quadro.h
-	$(CC) $(CFLAGS) -c processo.c
+processo.o: src/processo.c includes/processo.h includes/pagina.h includes/quadro.h
+	$(CC) $(CFLAGS) -c src/processo.c
 
-quadro.o: quadro.c quadro.h
-	$(CC) $(CFLAGS) -c quadro.c
+quadro.o: src/quadro.c includes/quadro.h
+	$(CC) $(CFLAGS) -c src/quadro.c
 
-memoria.o: memoria.c memoria.h quadro.h processo.h
-	$(CC) $(CFLAGS) -c memoria.c
+memoria.o: src/memoria.c includes/memoria.h includes/quadro.h includes/processo.h
+	$(CC) $(CFLAGS) -c src/memoria.c
 
 clean:
 	rm -f $(EXEC) $(OBJ)

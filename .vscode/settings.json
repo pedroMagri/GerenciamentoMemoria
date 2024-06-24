@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "processo.h": "c",
-        "memoria.h": "c"
+        "memoria.h": "c",
+        "quadro.h": "c"
     }
 }
