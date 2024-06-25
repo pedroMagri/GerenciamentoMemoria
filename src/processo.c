@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../includes/processo.h"
+#include "../includes/quadro.h"
 #include "../includes/memoria.h"
 
 Processo* cria_processo(int id_processo, int tamanho_memoria_fisica, int tamanho_memoria_logica, int tamanho_pagina) {
@@ -20,11 +21,12 @@ Processo* cria_processo(int id_processo, int tamanho_memoria_fisica, int tamanho
 
     int quadros_necessarios = processo->numero_paginas;
     int quadros_disponiveis = 0;
-    for (int i = 0; i < tamanho_memoria_fisica / tamanho_pagina; i++) {
-        if (uso_quadro[i] == 0) {
-            quadros_disponiveis++;
-        }
+    Quadro *curr = quadros_livres;
+    while (curr != NULL) {
+        quadros_disponiveis++;
+        curr = curr->next;
     }
+
     if (quadros_disponiveis < quadros_necessarios) {
         printf("Erro: Memória física insuficiente para alocar o processo.\n");
         free(processo);
@@ -56,12 +58,12 @@ Processo* cria_processo(int id_processo, int tamanho_memoria_fisica, int tamanho
             processo->tabela_paginas[i]->memoria[j] = rand();
         }
         
-        int numero_quadro;
-        do {
-            numero_quadro = rand() % (tamanho_memoria_fisica / tamanho_pagina);
-        } while (uso_quadro[numero_quadro] > 0);
-        processo->tabela_paginas[i]->numero_quadro = numero_quadro;
-        uso_quadro[numero_quadro] += processo->tabela_paginas[i]->memoria_usada;
+        Quadro *curr = quadros_livres;
+        while (curr->espaco_usado > 0) {
+            curr = curr->next;
+        }
+        processo->tabela_paginas[i]->numero_quadro = curr->numero;
+        uso_quadro[curr->numero] += processo->tabela_paginas[i]->memoria_usada;
     }
 
     return processo;

@@ -12,6 +12,7 @@ void alocar_quadros(int tamanho_memoria_fisica, int tamanho_pagina) {
             exit(EXIT_FAILURE);
         }
         novo_quadro->numero = i;
+        novo_quadro->espaco_usado = 0;
         novo_quadro->next = quadros_livres;
         quadros_livres = novo_quadro;
     }

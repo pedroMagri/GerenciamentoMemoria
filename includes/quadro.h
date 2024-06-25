@@ -3,6 +3,7 @@
 
 typedef struct Quadro {
     int numero; 
+    int espaco_usado;
     struct Quadro *next; 
 } Quadro;
 

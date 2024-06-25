@@ -7,13 +7,7 @@ int uso_quadro[TAMANHO_MEMORIA_FISICA / TAMANHO_PAGINA] = {0};
 
 void visualizar_memoria_fisica() {
     int total_frames = TAMANHO_MEMORIA_FISICA / TAMANHO_PAGINA;
-    int quadros_livres_count = 0;
     int memoria_usada = 0;
-    Quadro *curr = quadros_livres;
-    while (curr != NULL) {
-        quadros_livres_count++;
-        curr = curr->next;
-    }
     
     for (int i = 0; i < total_frames; i++) {
         memoria_usada += uso_quadro[i];
