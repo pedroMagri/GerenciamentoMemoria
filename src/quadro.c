@@ -17,3 +17,22 @@ void alocar_quadros(int tamanho_memoria_fisica, int tamanho_pagina) {
         quadros_livres = novo_quadro;
     }
 }
+
+void remover_quadro_livre(int numero_quadro) {
+    Quadro *curr = quadros_livres;
+    Quadro *prev = NULL;
+
+    while (curr != NULL) {
+        if (curr->numero == numero_quadro) {
+            if (prev == NULL) {
+                quadros_livres = curr->next;
+            } else {
+                prev->next = curr->next;
+            }
+            return;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+}
+

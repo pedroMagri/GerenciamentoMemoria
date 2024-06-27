@@ -58,12 +58,14 @@ Processo* cria_processo(int id_processo, int tamanho_memoria_fisica, int tamanho
             processo->tabela_paginas[i]->memoria[j] = rand();
         }
         
+        int numero_quadro_aleatorio = rand() % quadros_disponiveis-1;
         Quadro *curr = quadros_livres;
-        while (curr->espaco_usado > 0) {
+        for (int i = 0; i < numero_quadro_aleatorio; i++) {
             curr = curr->next;
         }
         processo->tabela_paginas[i]->numero_quadro = curr->numero;
         uso_quadro[curr->numero] += processo->tabela_paginas[i]->memoria_usada;
+        remover_quadro_livre(curr->numero);
     }
 
     return processo;
