@@ -15,7 +15,7 @@ Este projeto simula o gerenciamento de memória utilizando conceitos de alocaç�
     ├── main.c        Contém a função principal e a lógica de interação com o usuário.
     ├── memoria.c     Função de visualização da memória física.
     ├── processo.c    Funções para criação de processos e visualização de tabelas de páginas.
-    └── quadro.c      Função de criação dos quadros de memória.
+    └── quadro.c      Função de criação dos quadros de memória e gestão do vetor de quadros livres.
 ```
 &nbsp; &nbsp; &nbsp;
 
